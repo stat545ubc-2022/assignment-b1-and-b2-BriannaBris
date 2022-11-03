@@ -1,0 +1,54 @@
+---
+title: "Function"
+author: "Brianna Bristow"
+date: "01/11/2022"
+output: html_document
+---
+
+# Name of Function
+- choose something clever like K8 and MC, and briefly describe what the function does
+
+```{r}
+# Load libraries required to run function
+```
+
+# Inputs
+- describe what each variable is, what classes of variables can be used 
+- na.rm = remove NA's before running the function. Set default to my choosing and then use `...` so users of function have the flexibility to change if required for their dataset
+
+# Outputs
+- explain what the number(s) that come out after running my function represent
+- potentially helpful to include a `print` statement to explain this directly
+- include an error message in the above function for when class rules are not obeyed, clearly explaining why the function failed -> if() stop() or see other options from WS#B1
+
+```{r}
+# This is where my function's code will go
+```
+
+# Testing my function
+- use `testthat()` to see if function returns equivalent results to when you type out the entire statement or that the value returned matches -> including this in function code is a convenient way to check all values that you input are acceptable and that the function isn't running any errors
+- attack your function by putting in variable classes that you know won't work or comparing to equations/values that are not equivalent to the values plugged into the function -> use expect_() 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
