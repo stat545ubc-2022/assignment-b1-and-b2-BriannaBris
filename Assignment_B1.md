@@ -62,7 +62,7 @@ creates a new column to hold this data in the dataset.
 #' @param col2 The second chosen column/variable within the dataset. It must contain only numeric values.
 
 #' OUTPUTS:
-#' @result The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables
+#' @return The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables
 
 make_a_difference <- function(data, col1, col2, ...) {
   if(!is.numeric(col1)) {
@@ -71,8 +71,8 @@ make_a_difference <- function(data, col1, col2, ...) {
   if(!is.numeric(col2)) {
     stop("Sorry, but this function only works on numeric input for col2! You input a variable of class: ", class(col2))
   }
-  result <- (mutate(data, Difference = col1-col2))
-  print(result)
+  return <- (mutate(data, Difference = col1-col2))
+  print(return)
   }
 ```
 
