@@ -46,34 +46,63 @@ This function works by subtracting y (variable 2) from x (variable 1) in your de
 #' @result The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables
 
 make_a_difference <- function(data, x, y) {
-  result = (mutate(data, Difference = x-y))
+      # stopifnot(is.numeric(x) && is.numeric(y))
+  if(!is.numeric(x)) {
+    stop("Sorry, but this function only works on numeric inputs for x! You input a variable of class: ", class(x)[1])
+  }
+  if(!is.numeric(y)) {
+    stop("Sorry, but this function only works on numeric input for y! You input a variable of class: ", class(y)[1])
+  }
+  result <- (mutate(data, Difference = x-y))
   print(result)
   }
 ```
 
 # Examples
-## Example 1 - 
+## Example 1
 ```{r}
 # An example using the cancer_samples dataset 
 example1 <- cancer_sample %>% 
   select(c(diagnosis, perimeter_mean, perimeter_worst)) %>% 
   make_a_difference(cancer_sample$perimeter_worst, cancer_sample$perimeter_mean)
 ```
-## Example 2 -
+## Example 2
 ```{r}
 # An example using the gapminder dataset with variables containing the NA values
-
+example2 <- palmerpenguins::penguins %>% 
+  group_by(year) %>% 
+  make_a_difference(penguins$bill_length_mm, penguins$bill_depth_mm)
 ```
 
+## Example 3
+```{r}
+example3 <- starwars %>% 
+  make_a_difference(cancer_sample$diagnosis, cancer_sample$concavity_mean)
+
+```
 
 # Testing my function
 - use `testthat()` to see if function returns equivalent results to when you type out the entire statement or that the value returned matches -> including this in function code is a convenient way to check all values that you input are acceptable and that the function isn't running any errors
 - attack your function by putting in variable classes that you know won't work or comparing to equations/values that are not equivalent to the values plugged into the function -> use expect_() 
 
+## Test 1
+```{r}
+# Vector that has NA’s
+```
+
+## Test 2
+```{r}
+# Vector that has NA’s
+```
+
+## Test 3
+```{r}
+# Vector of a character type
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
