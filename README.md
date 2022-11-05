@@ -4,7 +4,7 @@
 
 This repository contains the .Rmd and .md files pertaining to Assignment B:
 * Assignment B1 files are in relation to my newly created `make_a_difference` function.
-* Assignment B2 files will focus on creating my first R package! *tba*
+* Assignment B2 files will focus on creating my first R package! *(stay tuned :wink:)*
 
 ## To use Files in this Repository
 
