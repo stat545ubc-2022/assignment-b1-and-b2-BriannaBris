@@ -1,29 +1,70 @@
 ---
 title: "Function"
 author: "Brianna Bristow"
-date: "01/11/2022"
-output: html_document
+date: "04/11/2022"
+output: github_document
 ---
 
-# Name of Function
-- choose something clever like K8 and MC, and briefly describe what the function does
+The following code chunk is required to load in packages used within this assignment.
 
 ```{r}
 # Load libraries required to run function
+library(datateachr)
+library(testthat)
+library(dplyr)
+library(tidyverse)
 ```
 
-# Inputs
-- describe what each variable is, what classes of variables can be used 
+# Exercise 1/2 - Documenting the Creation of my New Function
+
+## Introducing the 'Make a Difference' Function:
+This function calculates the difference between 2 variables, then creates a new column to hold this data in the dataset.
+
+### Inputs
+The following inputs are required to use this function:
+- **data** - the chosen dataset you'd like to use this function on
+- **x** - numeric variable 1 within the chosen dataset
+- **y** - numeric variable 2 within the chosen dataset 
 - na.rm = remove NA's before running the function. Set default to my choosing and then use `...` so users of function have the flexibility to change if required for their dataset
 
-# Outputs
+### Outputs
+This function works by subtracting y (variable 2) from x (variable 1) in your desired dataset, and reports these values in a separate column labelled "Difference"
 - explain what the number(s) that come out after running my function represent
 - potentially helpful to include a `print` statement to explain this directly
 - include an error message in the above function for when class rules are not obeyed, clearly explaining why the function failed -> if() stop() or see other options from WS#B1
 
 ```{r}
-# This is where my function's code will go
+#' @description Introducing the 'Make a Difference' Function - This function calculates the difference between 2 variables, then creates a new column to hold these calculations in the dataset. 
+
+#' INPUTS:
+#' @param data The dataset containing the chosen variables to apply this function on
+#' @param x Numeric variable 1 within the chosen dataset
+#' @param y Numeric variable 2 within the chosen dataset 
+#' @param ... Other parameters passable in the mutate() function
+
+#' OUTPUTS:
+#' @result The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables
+
+make_a_difference <- function(data, x, y) {
+  result = (mutate(data, Difference = x-y))
+  print(result)
+  }
 ```
+
+# Examples
+## Example 1 - 
+```{r}
+# An example using the cancer_samples dataset 
+example1 <- cancer_sample %>% 
+  select(c(diagnosis, perimeter_mean, perimeter_worst)) %>% 
+  make_a_difference(cancer_sample$perimeter_worst, cancer_sample$perimeter_mean)
+```
+## Example 2 -
+```{r}
+# An example using the gapminder dataset with variables containing the NA values
+
+```
+
 
 # Testing my function
 - use `testthat()` to see if function returns equivalent results to when you type out the entire statement or that the value returned matches -> including this in function code is a convenient way to check all values that you input are acceptable and that the function isn't running any errors
