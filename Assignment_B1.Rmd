@@ -1,7 +1,5 @@
 ---
-title: "Function"
-author: "Brianna Bristow"
-date: "04/11/2022"
+title: "Assignment B1"
 output: github_document
 ---
 
@@ -20,105 +18,86 @@ library(tidyverse)
 ## Introducing the 'Make a Difference' Function:
 This function calculates the difference between 2 variables, then creates a new column to hold this data in the dataset.
 
-### Inputs
-The following inputs are required to use this function:
-- **data** - the chosen dataset you'd like to use this function on
-- **x** - numeric variable 1 within the chosen dataset
-- **y** - numeric variable 2 within the chosen dataset 
-- na.rm = remove NA's before running the function. Set default to my choosing and then use `...` so users of function have the flexibility to change if required for their dataset
-
-### Outputs
-This function works by subtracting y (variable 2) from x (variable 1) in your desired dataset, and reports these values in a separate column labelled "Difference"
-- explain what the number(s) that come out after running my function represent
-- potentially helpful to include a `print` statement to explain this directly
-- include an error message in the above function for when class rules are not obeyed, clearly explaining why the function failed -> if() stop() or see other options from WS#B1
-
 ```{r}
 #' @description Introducing the 'Make a Difference' Function - This function calculates the difference between 2 variables, then creates a new column to hold these calculations in the dataset. 
 
 #' INPUTS:
 #' @param data The dataset containing the chosen variables to apply this function on
-#' @param x Numeric variable 1 within the chosen dataset
-#' @param y Numeric variable 2 within the chosen dataset 
-#' @param ... Other parameters passable in the mutate() function
+#' @param col1 The first chosen column/variable within the dataset.  It must contain only numeric values.
+#' @param col2 The second chosen column/variable within the dataset. It must contain only numeric values.
 
 #' OUTPUTS:
 #' @result The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables
 
-make_a_difference <- function(data, x, y) {
-      # stopifnot(is.numeric(x) && is.numeric(y))
-  if(!is.numeric(x)) {
-    stop("Sorry, but this function only works on numeric inputs for x! You input a variable of class: ", class(x)[1])
+make_a_difference <- function(data, col1, col2, ...) {
+  if(!is.numeric(col1)) {
+    stop("Sorry, but this function only works on numeric inputs for col1! You input a variable of class: ", class(col1))
   }
-  if(!is.numeric(y)) {
-    stop("Sorry, but this function only works on numeric input for y! You input a variable of class: ", class(y)[1])
+  if(!is.numeric(col2)) {
+    stop("Sorry, but this function only works on numeric input for col2! You input a variable of class: ", class(col2))
   }
-  result <- (mutate(data, Difference = x-y))
+  result <- (mutate(data, Difference = col1-col2))
   print(result)
   }
 ```
 
-# Examples
+# Exercise 3 - Use Examples
 ## Example 1
 ```{r}
-# An example using the cancer_samples dataset 
+# An example using the cancer_samples dataset, selecting only for the desired variables, and reporting the difference between perimeter_worst and perimeter_mean in malignant samples only
 example1 <- cancer_sample %>% 
   select(c(diagnosis, perimeter_mean, perimeter_worst)) %>% 
-  make_a_difference(cancer_sample$perimeter_worst, cancer_sample$perimeter_mean)
+  make_a_difference(cancer_sample$perimeter_worst, cancer_sample$perimeter_mean) %>% 
+  filter(diagnosis == "M")
 ```
 ## Example 2
 ```{r}
-# An example using the gapminder dataset with variables containing the NA values
-example2 <- palmerpenguins::penguins %>% 
-  group_by(year) %>% 
-  make_a_difference(penguins$bill_length_mm, penguins$bill_depth_mm)
+# An example using the penguins dataset with variables containing numeric and NA values
+Adelie <- palmerpenguins::penguins %>% 
+  filter(species == "Adelie")
+# After filtering for only the Adelie species, used the make_a_difference function to calculate the difference between bill length and depth
+example2 <- Adelie %>% 
+  make_a_difference(Adelie$bill_length_mm, Adelie$bill_depth_mm)
+  
 ```
 
 ## Example 3
 ```{r}
-example3 <- starwars %>% 
-  make_a_difference(cancer_sample$diagnosis, cancer_sample$concavity_mean)
-
+# The most basic version of this function, taking the difference between tree Height and Girth values.
+example3 <- make_a_difference(trees, trees$Height, trees$Girth)
 ```
 
-# Testing my function
-- use `testthat()` to see if function returns equivalent results to when you type out the entire statement or that the value returned matches -> including this in function code is a convenient way to check all values that you input are acceptable and that the function isn't running any errors
-- attack your function by putting in variable classes that you know won't work or comparing to equations/values that are not equivalent to the values plugged into the function -> use expect_() 
+# Exercise 4 - Testing my Function
+
+Below I perform 4 tests to attack my function using the `testthat()`.  Here, I am checking to see if my function returns error messages when expected and produces the expected output when used correctly.
 
 ## Test 1
+This test is to ensure that when a non-numeric variable is passed into the *col1* parameter, an error message is returned.
+
 ```{r}
-# Vector that has NA’s
+test_that("Function returns error if non-numerical input passed into col1", {
+  expect_error(make_a_difference(cancer_sample, cancer_sample$diagnosis, cancer_sample$radius_mean))
+})
+
 ```
 
 ## Test 2
+This test is to ensure that when a non-numeric variable is passed into *col2* parameter, an error message is returned.
+
 ```{r}
-# Vector that has NA’s
+test_that("Function returns error message if non-numerical input passed into col2", {
+  expect_error(make_a_difference(cancer_sample, cancer_sample$radius_mean, cancer_sample$diagnosis))
+})
 ```
 
 ## Test 3
+This test is designed to confirm a tibble is being printed following use of the function.
 ```{r}
-# Vector of a character type
+test_that("Function successfully prints a tibble", {
+  expect_true(is.tibble(make_a_difference(cancer_sample, cancer_sample$texture_worst, cancer_sample$texture_mean)))
+})
 ```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
