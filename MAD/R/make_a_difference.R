@@ -8,6 +8,10 @@
 
 #' OUTPUTS:
 #' @return The creation of a "Difference" column in the dataset containing the calculated differences of all the data points between the 2 variables.
+#' @examples 
+tree_diff <- make_a_difference(trees, trees$Height, trees$Girth)
+
+iris_diff <- make_a_difference(iris, iris$Petal.Width, iris$Sepal.Width)
 
 #' @export
 make_a_difference <- function(data, col1, col2) {
