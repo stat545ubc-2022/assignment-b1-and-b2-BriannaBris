@@ -13,6 +13,8 @@ To run files from Assignment B1, you can ...
 * click the .Rmd file, then copy the raw contents and paste into RStudio.
 
 To download my MAD package, you can do this by running the following code chunk:
-'devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris/MAD")'
+``` r
+devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris/MAD")
+```
 
 Feel free to post any issues, troubleshooting questions or concerns under the **Issues** tab and I will be happy to get back to you :smile:
