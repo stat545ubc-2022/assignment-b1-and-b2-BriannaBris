@@ -12,7 +12,7 @@ To run files from Assignment B1, you can ...
 * download the ZIP file by clicking the **green code button** in the top right corner of the repository home page or
 * click the .Rmd file, then copy the raw contents and paste into RStudio.
 
-To download my MAD package, you can do this by running the following code chunk:
+To download my MAD package from Assignment B2, you can do this by running the following code chunk:
 ``` r
 devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris/MAD")
 ```
