@@ -1,6 +1,6 @@
 Package: MAD
 Title: Calculate the difference between two variables and report values in a new column
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: 
     person("Brianna", "Bristow", , "brianna.bristow@ubc.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0411-916X"))
