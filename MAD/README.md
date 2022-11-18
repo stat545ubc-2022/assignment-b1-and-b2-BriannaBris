@@ -1,7 +1,3 @@
-------------------------------------------------------------------------
-
-## output: github_document
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # MAD - The ‘Make a Difference’ Package
@@ -21,7 +17,7 @@ You can install the development version of MAD like so:
 
 ``` r
 Use this code chunk to install the MAD package:
-  devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris")
+  devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris/MAD")
 ```
 
 ## Example
