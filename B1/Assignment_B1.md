@@ -54,6 +54,7 @@ This function calculates the difference between 2 variables, then
 creates a new column to hold this data in the dataset.
 
 ``` r
+#' @name "Make a Difference" Function
 #' @description Introducing the 'Make a Difference' Function - This function calculates the difference between 2 variables, then creates a new column to hold these calculations in the dataset. 
 
 #' INPUTS:
@@ -187,7 +188,7 @@ test_that("Function returns error if non-numerical input passed into col1", {
 })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😸
 
 ## Test 2
 
@@ -200,7 +201,7 @@ test_that("Function returns error message if non-numerical input passed into col
 })
 ```
 
-    ## Test passed 😸
+    ## Test passed 🌈
 
 ## Test 3
 
