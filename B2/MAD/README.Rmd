@@ -1,0 +1,42 @@
+---
+
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# MAD - The 'Make a Difference' Package
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of the MAD package is to simplify tedious difference calculations in numeric datasets. The 'make_a_difference' function calculates the difference between two numeric variables and reports these values in a novel column labelled "Differences" within the dataset. 
+
+## Installation
+
+You can install the development version of MAD like so:
+
+``` r
+Use this code chunk to install the MAD package:
+  devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-BriannaBris")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(MAD)
+# The most basic example of this function, taking the difference between tree Height and Girth values.
+tree_diff <- make_a_difference(trees, trees$Height, trees$Girth)
+print(tree_diff)
+```

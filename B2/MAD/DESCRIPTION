@@ -1,0 +1,16 @@
+Package: MAD
+Title: Calculate the difference between two variables and report values in a new column
+Version: 0.1.0
+Authors@R: 
+    person("Brianna", "Bristow", , "brianna.bristow@ubc.ca", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0411-916X"))
+Description: Introducing MAD: the 'Make a Difference' Package - This package contains the function 'make_a_difference,' which calculates the difference between 2 variables, then creates a new column to hold these calculations in the dataset.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports: 
+    dplyr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
