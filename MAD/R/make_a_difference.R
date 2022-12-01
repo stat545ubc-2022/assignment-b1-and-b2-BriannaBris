@@ -11,8 +11,8 @@
 #' @examples 
 #' tree_diff <- make_a_difference(trees, trees$Height, trees$Girth)
 #' iris_diff <- make_a_difference(iris, iris$Petal.Width, iris$Sepal.Width)
-#' @importFrom magrittr "%>%"
 #' @export
+
 make_a_difference <- function(data, col1, col2) {
   if(!is.numeric(col1)) {
     stop("Sorry, but this function only works on numeric inputs for col1! You input a variable of class: ", class(col1))
